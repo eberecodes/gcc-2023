@@ -9,9 +9,7 @@ COPY gradlew .
 COPY gradle ./gradle
 COPY src ./src
 
-RUN chmod +x ./gradlew
-RUN ./gradlew clean
-RUN ./gradlew build
+RUN gradle clean build --no-daemon
 
 FROM openjdk:17-jdk-slim
 
