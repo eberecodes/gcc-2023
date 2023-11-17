@@ -2,7 +2,7 @@ FROM gradle:8.4-jdk AS build
 
 COPY . .
 
-RUN gradle clean build --no-daemon
+RUN gradle clean build --no-daemon --console=plain -Dorg.gradle.project.buildDir=/build/libs
 
 FROM openjdk:17-jdk-slim
 
