@@ -12,6 +12,7 @@ EXPOSE 8080
 WORKDIR /app
 
 COPY --from=build /build/libs/*.jar /build/libs/app.jar
+WORKDIR /app
 RUN ["chmod", "+x", "/build/libs/app.jar"]
 
 ENTRYPOINT ["java", "-jar", "/build/libs/app.jar"]
