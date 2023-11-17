@@ -1,1 +1,1 @@
-rootProject.name = "gcc"
+rootProject.name = "gcc-2023"
