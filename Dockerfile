@@ -4,7 +4,7 @@ COPY . /app
 
 WORKDIR /app
 
-RUN gradle clean build --no-daemon --console=plain -Dorg.gradle.project.buildDir=/build/libs
+RUN gradle clean build --no-daemon --console=plain -Dorg.gradle.project.buildDir=/app/build/libs
 
 FROM openjdk:17-jdk-slim
 
