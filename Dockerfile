@@ -1,14 +1,21 @@
-FROM ubuntu:latest AS build
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
+FROM openjdk:17-jdk AS build
+
 WORKDIR /gcc-2023
-COPY . .
+
+COPY build.gradle.kts .
+COPY settings.gradle.kts .
+COPY gradlew .
+COPY gradle ./gradle
+COPY src ./src
+
 RUN chmod +x ./gradlew
-RUN ./gradlew bootJar --no-daemon
+RUN ./gradlew clean build
 
 FROM openjdk:17-jdk-slim
+
 WORKDIR /gcc-2023
+
 EXPOSE 8080
-COPY --from=build /build/libs/gcc-2023-1.jar app.jar
+COPY --from=build /build/libs/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
