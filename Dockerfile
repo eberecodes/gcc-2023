@@ -7,6 +7,6 @@ RUN gradle clean build --no-daemon --console=plain -Dorg.gradle.project.buildDir
 FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
-COPY --from=build ./build/libs/*.jar app.jar
+COPY --from=build ./build/libs/*.jar ./build/libs/app.jar
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "./build/libs/app.jar"]
