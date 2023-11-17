@@ -13,7 +13,7 @@ WORKDIR /app
 
 COPY --from=build /app/build/libs/*.jar app.jar
 RUN ls -la /app
-RUN ls -la /app/build/libs
+RUN ls -la build/libs
 RUN ["chmod", "+x", "app.jar"]
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
