@@ -11,7 +11,7 @@ COPY src ./src
 
 RUN gradle clean build --no-daemon
 
-FROM adoptopenjdk/openjdk17:alpine-slim
+FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
 COPY --from=build /build/libs/gcc-2023-1.jar app.jar
