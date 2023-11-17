@@ -11,8 +11,9 @@ FROM openjdk:17-jdk-slim
 EXPOSE 8080
 WORKDIR /app
 
-COPY --from=build /app/build/libs/*.jar app.jar
+COPY --from=build /app/build/libs/gcc-2023-1.jar app.jar
 RUN ls -la /app
 RUN ls -la
 
+RUN ["chmod", "+x", "app.jar"]
 ENTRYPOINT ["java", "-jar", "app.jar"]
