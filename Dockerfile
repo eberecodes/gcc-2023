@@ -1,5 +1,5 @@
 # Use the official OpenJDK 17 as the base image
-FROM adoptopenjdk:17-jdk-hotspot
+FROM openjdk:17-jdk-slim
 
 # Set environment variables
 ENV APP_HOME=/app \
