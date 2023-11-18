@@ -12,7 +12,7 @@ EXPOSE 8080
 WORKDIR /app
 
 COPY --from=build /app/build/libs/*.jar app.jar
-RUN ls -la /app
+RUN ls -la
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
 CMD ["-start"]
