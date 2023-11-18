@@ -7,8 +7,7 @@ RUN gradle clean bootJar --no-daemon --console=plain -Dorg.gradle.project.buildD
 FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
-COPY /build/libs/*.jar app.jar
-RUN ["chmod", "+x", "app.jar"]
+COPY --from=build /build/libs/*.jar /app/
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/*.jar"]
 CMD ["-start"]
