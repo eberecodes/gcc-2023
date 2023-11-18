@@ -11,7 +11,7 @@ FROM openjdk:17-jdk-slim
 EXPOSE 8080
 WORKDIR /app
 
-RUN ["find", "app/", "-name", "*.jar"]
+RUN ["find", ".", "-name", "*.jar"]
 COPY --from=build /app/build/libs/gcc-2023-1.jar app.jar
 RUN ls -la /app
 RUN ls -la
