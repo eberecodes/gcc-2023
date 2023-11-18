@@ -1,13 +1,24 @@
-FROM gradle:8.4-jdk AS build
+# Use the official OpenJDK 17 as the base image
+FROM adoptopenjdk:17-jdk-hotspot
 
-COPY . .
+# Set environment variables
+ENV APP_HOME=/app \
+    APP_PORT=8080
 
-RUN gradle clean bootJar --no-daemon --console=plain -Dorg.gradle.project.buildDir=/build/libs
+# Set the working directory in the container
+WORKDIR $APP_HOME
 
-FROM openjdk:17-jdk-slim
+# Copy the Gradle project files to the container
+COPY build.gradle.kts settings.gradle.kts $APP_HOME/
 
-EXPOSE 8080
-COPY --from=build /build/libs/*.jar /app/
+# Copy the source code to the container
+COPY src $APP_HOME/src
 
-ENTRYPOINT ["java", "-jar", "/app/*.jar"]
-CMD ["-start"]
+# Run the Gradle build inside the container
+RUN ./gradlew build
+
+# Expose the port on which the application will run
+EXPOSE $APP_PORT
+
+# Set the entrypoint command to run the Spring Boot application
+ENTRYPOINT ["java", "-jar", "build/libs/my-application.jar"]
