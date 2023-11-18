@@ -11,6 +11,9 @@ WORKDIR $APP_HOME
 # Copy the Gradle project files to the container
 COPY build.gradle.kts settings.gradle.kts gradlew $APP_HOME/
 
+# Set execute permissions
+RUN ["chmod", "+x", "./gradlew"]
+
 # Copy the source code to the container
 COPY src $APP_HOME/src
 
