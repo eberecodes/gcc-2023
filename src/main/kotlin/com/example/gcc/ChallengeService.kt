@@ -102,15 +102,23 @@ class ChallengeService {
         var longestPalindrome = 0
         var odd = 0
         letterToCount.forEach {
-            if (it.value % 2 == 0) {
-                longestPalindrome += it.value
-            } else if (it.value > 2) {
-                longestPalindrome += it.value - 1
-            } else {
-                odd = 1
+            if (it.key[0].isLetter()) {
+                if (it.value % 2 == 0) {
+                    longestPalindrome += it.value
+                } else if (it.value > 2) {
+                    longestPalindrome += it.value - 1
+                    odd = 1
+                } else {
+                    odd = 1
+                }
             }
         }
-        return longestPalindrome + odd
+        longestPalindrome += odd
+        return if (longestPalindrome > 2000) {
+            2000
+        } else {
+            longestPalindrome
+        }
     }
 
 
