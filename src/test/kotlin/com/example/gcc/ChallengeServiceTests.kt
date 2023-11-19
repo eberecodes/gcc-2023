@@ -36,6 +36,20 @@ class ChallengeServiceTests {
     }
 
     @Test
+    fun `get the file reorganisation from example post input`() {
+        val testInput = Inputs(listOf("abccccdd", "a"))
+        val actual = ChallengeService().postFileReorganisation(testInput)
+        Assertions.assertEquals(AnswerNumeric(listOf(7, 1)), actual)
+    }
+
+    @Test
+    fun `find longested palindrome`() {
+        val testInput = "abccccdd"
+        val actual = ChallengeService().findLongestPalindrome(testInput)
+        Assertions.assertEquals(7, actual)
+    }
+
+    @Test
     fun `get the new text encrypted for 1 input text`() {
         val testInput = "coding"
         val actual = ChallengeService().getEncrypted(testInput)

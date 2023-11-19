@@ -15,6 +15,9 @@ class ChallengeController(private val challengeService: ChallengeService) {
     @PostMapping("/profit-maximization", consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun postProfitMaximise(@RequestBody inputs: Inputs): AnswerNumeric = challengeService.postProfitMaximise(inputs)
 
+    @PostMapping("/file-reorganization", consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun postFileReorganisation(@RequestBody inputs: Inputs): AnswerNumeric = challengeService.postFileReorganisation(inputs)
+
     @PostMapping("/data-encryption", consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun postDataEncryption(@RequestBody inputs: Inputs): Answer = challengeService.postDataEncryption(inputs)
 }

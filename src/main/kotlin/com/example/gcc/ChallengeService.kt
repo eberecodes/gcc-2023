@@ -92,5 +92,26 @@ class ChallengeService {
         }
     }
 
+    fun postFileReorganisation(inputs: Inputs): AnswerNumeric {
+        return AnswerNumeric(answer = inputs.inputs.map { findLongestPalindrome(it) })
+    }
+
+    fun findLongestPalindrome(word: String): Int {
+        val letterToCount = mutableMapOf<String, Int>()
+        word.forEach { letterToCount[it.toString()] = letterToCount.getOrDefault(it.toString(), 0) + 1 }
+        var longestPalindrome = 0
+        var odd = 0
+        letterToCount.forEach {
+            if (it.value % 2 == 0) {
+                longestPalindrome += it.value
+            } else if (it.value > 2) {
+                longestPalindrome += it.value - 1
+            } else {
+                odd = 1
+            }
+        }
+        return longestPalindrome + odd
+    }
+
 
 }
