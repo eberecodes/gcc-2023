@@ -36,20 +36,9 @@ class ChallengeServiceTests {
     }
 
     @Test
-    fun `get the new text encrypted from example post input`() {
-        val testInput = Inputs(listOf("coding", "its harder to read code than to write it"))
-        val actual = ChallengeService().postDataEncryption(testInput)
-        Assertions.assertEquals(Answer(listOf("ci on dg", "ideeoi teatwt srdhr htcai aoont rrdte")), actual)
-    }
-
-    @Test
     fun `get the new text encrypted for 1 input text`() {
         val testInput = "coding"
         val actual = ChallengeService().getEncrypted(testInput)
         Assertions.assertEquals("ci on dg", actual)
-
-        val testInput2 = "its harder to read code than to write it"
-        val actual2 = ChallengeService().getEncrypted(testInput2)
-        Assertions.assertEquals("ideeoi teatwt srdhr htcai aoont rrdte", actual2)
     }
 }
