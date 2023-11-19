@@ -15,9 +15,27 @@ class ChallengeService {
         val inputWithoutExpectedDays = inputSplitToInt.drop(1)
 
         val inputsMap = inputWithoutExpectedDays.mapIndexed { index, i -> index to i }.toMap()
-        val sortedInputsMap = inputsMap.toList().sortedBy { (_, value) -> value }.toMap()
+        val diffMap = mutableMapOf<Int, MutableList<Int>>()
 
-        return findMaxDifference(sortedInputsMap.entries.first().toPair(), sortedInputsMap.entries.last().toPair(), sortedInputsMap.entries, sortedInputsMap.size - 1)
+        for (i in 0..inputsMap.size - 1) {
+            val listOfDifference = mutableListOf<Int>()
+            for (j in i + 1..inputsMap.size - 1) {
+                val difference = inputsMap[j]!! - inputsMap[i]!!
+                listOfDifference.add(difference)
+            }
+            diffMap[i] = listOfDifference
+        }
+        val maxDiff = mutableListOf<Int>()
+        diffMap.forEach {
+            try {
+                maxDiff.add(it.value.max())
+            } catch (e: Exception) {
+                maxDiff.add(0)
+            }
+        }
+
+        return maxDiff.max()
+
     }
 
     fun findMaxDifference(minPair: Pair<Int, Int>, maxPair: Pair<Int, Int>, entries: Set<Map.Entry<Int, Int>>, size: Int): Int {

@@ -33,8 +33,6 @@ class ChallengeServiceTests {
         val actual = ChallengeService().findMaxPositiveDifference(testInput)
 
         Assertions.assertEquals(161, actual)
-        // current solution doesn't account for when buy day is not day one - come back to this
-        // This test case failed: 20 57 77 185 68 118 89 64 77 118 38 188 100 127 199 161 48 112 159 57 144
     }
 
     @Test
